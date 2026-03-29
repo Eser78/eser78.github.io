@@ -1,0 +1,50 @@
+/* Global Reset & Base Styles */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --purple-deep: #0d0a1a;
+  --purple-dark: #1a1030;
+  --purple-mid: #2d1b69;
+  --purple-bright: #7c3aed;
+  --purple-light: #a78bfa;
+  --purple-glow: #c084fc;
+  --white: #ffffff;
+  --white-muted: #e2e0eb;
+  --gray-light: #b0adc0;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--purple-deep);
+  color: var(--white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--purple-light);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--purple-glow);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}

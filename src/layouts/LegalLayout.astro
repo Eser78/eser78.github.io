@@ -1,0 +1,149 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  heading: string;
+  lastUpdated?: string;
+}
+
+const { title, description, heading, lastUpdated } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <header class="legal-header">
+    <div class="container">
+      <a href="/nightmixer" class="back-link">&larr; Back to Night Mixer</a>
+    </div>
+  </header>
+  <main class="legal-main">
+    <div class="container">
+      <h1>{heading}</h1>
+      {lastUpdated && <p class="last-updated">Last updated: {lastUpdated}</p>}
+      <div class="legal-content">
+        <slot />
+      </div>
+    </div>
+  </main>
+  <footer class="legal-footer">
+    <div class="container">
+      <p>&copy; {new Date().getFullYear()} ESOciate - Eser Kayali. All rights reserved.</p>
+      <nav class="footer-links">
+        <a href="/nightmixer">Night Mixer</a>
+        <a href="/nightmixer/privacy-policy">Privacy Policy</a>
+        <a href="/nightmixer/terms-of-use">Terms of Use</a>
+        <a href="/nightmixer/legal-notice">Legal Notice</a>
+      </nav>
+    </div>
+  </footer>
+</BaseLayout>
+
+<style>
+  .legal-header {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .back-link {
+    font-size: 0.95rem;
+    color: var(--purple-light);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .legal-main {
+    padding: 3rem 0 4rem;
+  }
+
+  h1 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--white), var(--purple-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .last-updated {
+    color: var(--gray-light);
+    font-size: 0.9rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .legal-content {
+    color: var(--white-muted);
+    line-height: 1.8;
+  }
+
+  .legal-content :global(h2) {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--white);
+    margin: 2.5rem 0 1rem;
+  }
+
+  .legal-content :global(h3) {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--white);
+    margin: 1.5rem 0 0.75rem;
+  }
+
+  .legal-content :global(p) {
+    margin-bottom: 1rem;
+  }
+
+  .legal-content :global(ul),
+  .legal-content :global(ol) {
+    margin: 0.75rem 0 1rem 1.5rem;
+  }
+
+  .legal-content :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  .legal-content :global(a) {
+    color: var(--purple-light);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .legal-footer {
+    border-top: 1px solid rgba(124, 58, 237, 0.2);
+    padding: 2rem 0;
+    text-align: center;
+  }
+
+  .legal-footer p {
+    color: var(--gray-light);
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 640px) {
+    h1 {
+      font-size: 1.75rem;
+    }
+
+    .legal-main {
+      padding: 2rem 0 3rem;
+    }
+  }
+</style>

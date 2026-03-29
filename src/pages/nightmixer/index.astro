@@ -1,0 +1,792 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Night Mixer - Create Your Perfect Sleep Soundscape"
+  description="Mix and play relaxing sounds for sleep, studying and focus. Create personalized soundscapes with Night Mixer."
+>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="stars"></div>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a href="/" class="nav-brand">
+          <img src="/nightmixer/images/AppIcon1024.png" alt="Night Mixer" class="nav-icon" />
+          <span>Night Mixer</span>
+        </a>
+        <div class="nav-links">
+          <a href="#features">Features</a>
+          <a href="#screenshots">Screenshots</a>
+          <a href="#download" class="nav-cta">Download</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Create Your Perfect<br /><span class="gradient-text">Sleep Soundscape</span></h1>
+        <p class="hero-subtitle">
+          Mix relaxing sounds, save custom presets, and drift off to sleep with your perfect
+          ambient soundscape. Designed for sleep, studying, and focus.
+        </p>
+        <div class="hero-actions">
+          <a href="#download" class="btn btn-primary">Download Free</a>
+          <a href="#features" class="btn btn-secondary">Learn More</a>
+        </div>
+        <div class="hero-badges">
+          <span class="badge">3-Day Free Trial</span>
+          <span class="badge">No Ads</span>
+          <span class="badge">20+ Sounds</span>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="/nightmixer/images/Screen_1.png" alt="Night Mixer App Screenshot" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="features">
+    <div class="container">
+      <h2 class="section-title">Everything You Need to <span class="gradient-text">Relax</span></h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          </div>
+          <h3>Mix & Match Sounds</h3>
+          <p>Combine multiple ambient sounds and adjust individual volumes to create your ideal soundscape.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+          </div>
+          <h3>Save Presets</h3>
+          <p>Save your favorite sound combinations as presets and load them instantly whenever you need them.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3>Sleep Timer</h3>
+          <p>Set a timer and let the sounds fade out gently as you drift off to sleep. Choose from preset durations or set a custom time.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"/><circle cx="12" cy="12" r="4"/></svg>
+          </div>
+          <h3>Growing Library</h3>
+          <p>From brown noise to fireplace crackle, ocean waves to lo-fi music — new sounds added regularly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Screenshots Section -->
+  <section id="screenshots" class="screenshots">
+    <div class="container">
+      <h2 class="section-title">See It in <span class="gradient-text">Action</span></h2>
+      <div class="screenshot-scroll">
+        <div class="screenshot-track">
+          <div class="screenshot-item">
+            <img src="/nightmixer/images/Screen_1.png" alt="Sound Mixer" />
+          </div>
+          <div class="screenshot-item">
+            <img src="/nightmixer/images/Screen_2.png" alt="Presets" />
+          </div>
+          <div class="screenshot-item">
+            <img src="/nightmixer/images/Screen_3.png" alt="Sleep Timer" />
+          </div>
+          <div class="screenshot-item">
+            <img src="/nightmixer/images/Screen_4.png" alt="Sound Library" />
+          </div>
+          <div class="screenshot-item">
+            <img src="/nightmixer/images/Screen_5.png" alt="More Sounds" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="pricing">
+    <div class="container">
+      <h2 class="section-title">Simple <span class="gradient-text">Pricing</span></h2>
+      <p class="section-subtitle">Start with a 3-day free trial. No payment required.</p>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Monthly</h3>
+          <div class="price">3.99<span>/month</span></div>
+          <ul>
+            <li>All sounds unlocked</li>
+            <li>Unlimited presets</li>
+            <li>Sleep timer</li>
+            <li>New sounds as they drop</li>
+          </ul>
+        </div>
+        <div class="pricing-card popular">
+          <div class="popular-badge">Best Value</div>
+          <h3>Yearly</h3>
+          <div class="price">19.99<span>/year</span></div>
+          <ul>
+            <li>Everything in Monthly</li>
+            <li>Save over 58%</li>
+            <li>Just $1.67/month</li>
+            <li>New sounds as they drop</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Download Section -->
+  <section id="download" class="download">
+    <div class="container">
+      <img src="/nightmixer/images/AppIcon1024.png" alt="Night Mixer" class="download-icon" />
+      <h2>Ready to Sleep Better?</h2>
+      <p>Download Night Mixer and create your perfect soundscape tonight.</p>
+      <div class="store-buttons">
+        <a href="#" class="store-btn" aria-label="Download on the App Store">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <div>
+            <span class="store-label">Download on the</span>
+            <span class="store-name">App Store</span>
+          </div>
+        </a>
+        <a href="#" class="store-btn" aria-label="Get it on Google Play">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M3 20.5v-17c0-.59.34-1.11.84-1.35L13.69 12l-9.85 9.85c-.5-.24-.84-.76-.84-1.35m13.81-5.38L6.05 21.34l8.49-8.49 2.27 2.27m3.35-4.31c.34.27.56.69.56 1.19s-.22.92-.56 1.19l-1.97 1.13-2.5-2.5 2.5-2.5 1.97 1.13zM6.05 2.66l10.76 6.22-2.27 2.27L6.05 2.66z"/></svg>
+          <div>
+            <span class="store-label">GET IT ON</span>
+            <span class="store-name">Google Play</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="/nightmixer/images/AppIcon1024.png" alt="Night Mixer" class="footer-icon" />
+          <p>Night Mixer</p>
+          <span class="footer-company">by ESOciate</span>
+        </div>
+        <div class="footer-section">
+          <h4>Legal</h4>
+          <a href="/nightmixer/privacy-policy">Privacy Policy</a>
+          <a href="/nightmixer/terms-of-use">Terms of Use</a>
+          <a href="/nightmixer/legal-notice">Legal Notice</a>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <a href="mailto:support@esociate.it.com">support@esociate.it.com</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; {new Date().getFullYear()} ESOciate - Eser Kayali. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</BaseLayout>
+
+<style>
+  /* ===== NAV ===== */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1rem 0;
+    background: rgba(13, 10, 26, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(124, 58, 237, 0.15);
+  }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--white);
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  .nav-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 0.5rem;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav-links a {
+    color: var(--gray-light);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .nav-links a:hover {
+    color: var(--white);
+  }
+
+  .nav-cta {
+    background: var(--purple-bright);
+    color: var(--white) !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.5rem;
+    font-weight: 600 !important;
+  }
+
+  .nav-cta:hover {
+    background: #6d28d9;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding-top: 5rem;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 20%, rgba(124, 58, 237, 0.3) 0%, transparent 60%),
+      radial-gradient(ellipse at 30% 80%, rgba(124, 58, 237, 0.15) 0%, transparent 50%);
+    z-index: 0;
+  }
+
+  .stars {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.3), transparent),
+      radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.2), transparent),
+      radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.4), transparent),
+      radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.2), transparent),
+      radial-gradient(2px 2px at 160px 30px, rgba(255, 255, 255, 0.3), transparent);
+    background-size: 200px 100px;
+    z-index: 0;
+    animation: twinkle 4s ease-in-out infinite alternate;
+  }
+
+  @keyframes twinkle {
+    0% { opacity: 0.5; }
+    100% { opacity: 1; }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    flex: 1;
+  }
+
+  .hero-text {
+    flex: 1;
+  }
+
+  h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--purple-light), var(--purple-glow), #e879f9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--gray-light);
+    max-width: 500px;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.85rem 2rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--purple-bright), #9333ea);
+    color: var(--white);
+    box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 30px rgba(124, 58, 237, 0.5);
+    color: var(--white);
+  }
+
+  .btn-secondary {
+    border: 1px solid rgba(124, 58, 237, 0.4);
+    color: var(--purple-light);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(124, 58, 237, 0.1);
+    border-color: var(--purple-bright);
+  }
+
+  .hero-badges {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    background: rgba(124, 58, 237, 0.15);
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    color: var(--purple-light);
+    padding: 0.35rem 0.85rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .hero-image {
+    flex-shrink: 0;
+    width: 320px;
+  }
+
+  .hero-image img {
+    width: 100%;
+    border-radius: 1.5rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(124, 58, 237, 0.2);
+  }
+
+  /* ===== FEATURES ===== */
+  .features {
+    padding: 6rem 0;
+    background: linear-gradient(180deg, var(--purple-deep) 0%, var(--purple-dark) 100%);
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .section-subtitle {
+    text-align: center;
+    color: var(--gray-light);
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .feature-card {
+    background: rgba(124, 58, 237, 0.08);
+    border: 1px solid rgba(124, 58, 237, 0.2);
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: all 0.3s ease;
+  }
+
+  .feature-card:hover {
+    background: rgba(124, 58, 237, 0.14);
+    border-color: rgba(124, 58, 237, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .feature-icon {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, var(--purple-bright), #9333ea);
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    color: var(--white);
+  }
+
+  .feature-card h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .feature-card p {
+    color: var(--gray-light);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* ===== SCREENSHOTS ===== */
+  .screenshots {
+    padding: 6rem 0;
+    background: var(--purple-dark);
+    overflow: hidden;
+  }
+
+  .screenshot-scroll {
+    margin-top: 3rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 1rem;
+  }
+
+  .screenshot-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .screenshot-track {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0 calc((100vw - 1100px) / 2);
+    min-width: min-content;
+  }
+
+  .screenshot-item {
+    flex-shrink: 0;
+    width: 260px;
+  }
+
+  .screenshot-item img {
+    width: 100%;
+    border-radius: 1.25rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease;
+  }
+
+  .screenshot-item img:hover {
+    transform: scale(1.03);
+  }
+
+  /* ===== PRICING ===== */
+  .pricing {
+    padding: 6rem 0;
+    background: linear-gradient(180deg, var(--purple-dark) 0%, var(--purple-deep) 100%);
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    max-width: 700px;
+    margin: 3rem auto 0;
+  }
+
+  .pricing-card {
+    background: rgba(124, 58, 237, 0.08);
+    border: 1px solid rgba(124, 58, 237, 0.2);
+    border-radius: 1.25rem;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .pricing-card.popular {
+    border-color: var(--purple-bright);
+    background: rgba(124, 58, 237, 0.15);
+    box-shadow: 0 0 40px rgba(124, 58, 237, 0.2);
+  }
+
+  .popular-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--purple-bright), #9333ea);
+    color: var(--white);
+    padding: 0.3rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .pricing-card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--gray-light);
+    margin-bottom: 1rem;
+  }
+
+  .price {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+  }
+
+  .price span {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--gray-light);
+  }
+
+  .pricing-card ul {
+    list-style: none;
+    text-align: left;
+  }
+
+  .pricing-card li {
+    padding: 0.5rem 0;
+    color: var(--white-muted);
+    font-size: 0.95rem;
+  }
+
+  .pricing-card li::before {
+    content: '\2713';
+    color: var(--purple-bright);
+    margin-right: 0.5rem;
+    font-weight: 700;
+  }
+
+  /* ===== DOWNLOAD ===== */
+  .download {
+    padding: 6rem 0;
+    text-align: center;
+    background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.15) 0%, transparent 70%);
+  }
+
+  .download-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 1.5rem;
+    margin: 0 auto 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .download h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+  }
+
+  .download p {
+    color: var(--gray-light);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+
+  .store-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .store-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--white);
+    color: #111;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+  }
+
+  .store-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    color: #111;
+  }
+
+  .store-label {
+    display: block;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .store-name {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    background: var(--purple-deep);
+    border-top: 1px solid rgba(124, 58, 237, 0.2);
+    padding: 3rem 0 1.5rem;
+  }
+
+  .footer-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .footer-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-brand p {
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  .footer-company {
+    color: var(--gray-light);
+    font-size: 0.85rem;
+  }
+
+  .footer-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-section h4 {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+    color: var(--white);
+  }
+
+  .footer-section a {
+    color: var(--gray-light);
+    font-size: 0.9rem;
+  }
+
+  .footer-section a:hover {
+    color: var(--purple-light);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(124, 58, 237, 0.15);
+    padding-top: 1.5rem;
+    text-align: center;
+  }
+
+  .footer-bottom p {
+    color: var(--gray-light);
+    font-size: 0.8rem;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .nav-links a:not(.nav-cta) {
+      display: none;
+    }
+
+    .hero-content {
+      flex-direction: column;
+      text-align: center;
+      padding-top: 2rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-actions {
+      justify-content: center;
+    }
+
+    .hero-badges {
+      justify-content: center;
+    }
+
+    .hero-image {
+      width: 250px;
+    }
+
+    .feature-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .section-title {
+      font-size: 2rem;
+    }
+
+    .pricing-grid {
+      grid-template-columns: 1fr;
+      max-width: 350px;
+    }
+
+    .screenshot-track {
+      padding: 0 1.5rem;
+    }
+
+    .screenshot-item {
+      width: 200px;
+    }
+
+    .footer-grid {
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .download h2 {
+      font-size: 2rem;
+    }
+  }
+</style>

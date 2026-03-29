@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="ESOciate" description="Apps by ESOciate - Eser Kayali">
+  <main class="hub">
+    <div class="container">
+      <h1>ESOciate</h1>
+      <p class="subtitle">Apps & Projects</p>
+      <div class="app-grid">
+        <a href="/nightmixer" class="app-card">
+          <img src="/nightmixer/images/AppIcon1024.png" alt="Night Mixer App Icon" class="app-icon" />
+          <div class="app-info">
+            <h2>Night Mixer</h2>
+            <p>Mix relaxing sounds for sleep, studying & focus</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <p>&copy; {new Date().getFullYear()} ESOciate - Eser Kayali</p>
+  </footer>
+</BaseLayout>
+
+<style>
+  .hub {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .container {
+    max-width: 700px;
+    width: 100%;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--white), var(--purple-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.25rem;
+  }
+
+  .subtitle {
+    color: var(--gray-light);
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+  }
+
+  .app-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .app-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: rgba(124, 58, 237, 0.1);
+    border: 1px solid rgba(124, 58, 237, 0.25);
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: var(--white);
+  }
+
+  .app-card:hover {
+    background: rgba(124, 58, 237, 0.2);
+    border-color: rgba(124, 58, 237, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .app-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 1rem;
+    flex-shrink: 0;
+  }
+
+  .app-info {
+    text-align: left;
+  }
+
+  .app-info h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .app-info p {
+    color: var(--gray-light);
+    font-size: 0.95rem;
+  }
+
+  footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 1.5rem;
+    color: var(--gray-light);
+    font-size: 0.85rem;
+  }
+</style>
