@@ -475,6 +475,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     background: var(--purple-dark);
   }
 
+  .screenshots .container {
+    max-width: 100%;
+    padding: 0;
+  }
+
   .screenshot-scroll {
     margin-top: 3rem;
     overflow-x: auto;
@@ -489,13 +494,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   }
 
   .screenshot-track {
-    display: inline-flex;
+    display: flex;
     gap: 1.5rem;
+    width: max-content;
+    margin: 0 auto;
     padding: 0 2rem;
-  }
-
-  .screenshot-scroll {
-    text-align: center;
   }
 
   .screenshot-item {
