@@ -1,26 +1,45 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import {
+  getLegalPath,
+  localeConfig,
+  type Locale,
+} from '../lib/locales';
 
 interface Props {
   title: string;
   description: string;
   heading: string;
   lastUpdated?: string;
+  locale?: Locale;
+  canonicalPath: string;
+  alternates: Array<{
+    lang: string;
+    path: string;
+  }>;
 }
 
-const { title, description, heading, lastUpdated } = Astro.props;
+const { title, description, heading, lastUpdated, locale = 'en', canonicalPath, alternates } = Astro.props;
+const localeData = localeConfig[locale];
+const labels = localeData.labels;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout
+  title={title}
+  description={description}
+  lang={locale}
+  canonicalPath={canonicalPath}
+  alternates={alternates}
+>
   <header class="legal-header">
     <div class="container">
-      <a href="/nightmixer" class="back-link">&larr; Back to Night Mixer</a>
+      <a href={localeData.reveraPath} class="back-link">&larr; {labels.backToRevera}</a>
     </div>
   </header>
   <main class="legal-main">
     <div class="container">
       <h1>{heading}</h1>
-      {lastUpdated && <p class="last-updated">Last updated: {lastUpdated}</p>}
+      {lastUpdated && <p class="last-updated">{labels.lastUpdated}: {lastUpdated}</p>}
       <div class="legal-content">
         <slot />
       </div>
@@ -28,12 +47,12 @@ const { title, description, heading, lastUpdated } = Astro.props;
   </main>
   <footer class="legal-footer">
     <div class="container">
-      <p>&copy; {new Date().getFullYear()} ESOciate - Eser Kayali. All rights reserved.</p>
+      <p>&copy; {new Date().getFullYear()} ESOciate - Eser Kayali. {labels.rights}</p>
       <nav class="footer-links">
-        <a href="/nightmixer">Night Mixer</a>
-        <a href="/nightmixer/privacy-policy">Privacy Policy</a>
-        <a href="/nightmixer/terms-of-use">Terms of Use</a>
-        <a href="/nightmixer/legal-notice">Legal Notice</a>
+        <a href={localeData.reveraPath}>Revera</a>
+        <a href={getLegalPath(locale, 'privacyPolicy')}>{labels.privacyPolicy}</a>
+        <a href={getLegalPath(locale, 'termsOfUse')}>{labels.termsOfUse}</a>
+        <a href={getLegalPath(locale, 'legalNotice')}>{labels.legalNotice}</a>
       </nav>
     </div>
   </footer>
@@ -49,6 +68,7 @@ const { title, description, heading, lastUpdated } = Astro.props;
     max-width: 800px;
     margin: 0 auto;
     padding: 0 1.5rem;
+    width: 100%;
   }
 
   .back-link {
@@ -82,6 +102,7 @@ const { title, description, heading, lastUpdated } = Astro.props;
   .legal-content {
     color: var(--white-muted);
     line-height: 1.8;
+    overflow-wrap: break-word;
   }
 
   .legal-content :global(h2) {
@@ -138,12 +159,39 @@ const { title, description, heading, lastUpdated } = Astro.props;
   }
 
   @media (max-width: 640px) {
+    .legal-header {
+      padding: 1rem 0;
+    }
+
+    .container {
+      padding: 0 1rem;
+    }
+
     h1 {
       font-size: 1.75rem;
+      line-height: 1.2;
     }
 
     .legal-main {
       padding: 2rem 0 3rem;
+    }
+
+    .footer-links {
+      gap: 0.75rem 1rem;
+    }
+  }
+
+  @media (max-width: 380px) {
+    h1 {
+      font-size: 1.55rem;
+    }
+
+    .legal-content {
+      font-size: 0.95rem;
+    }
+
+    .legal-content :global(h2) {
+      font-size: 1.2rem;
     }
   }
 </style>

@@ -1,11 +1,15 @@
 ---
 import LegalLayout from '../../layouts/LegalLayout.astro';
+import { getLegalAlternates, getLegalPath } from '../../lib/locales';
 ---
 
 <LegalLayout
-  title="Legal Notice - Night Mixer"
-  description="Legal Notice (Impressum) for Night Mixer by ESOciate."
+  title="Legal Notice - Revera"
+  description="Legal Notice (Impressum) for Revera by ESOciate."
   heading="Legal Notice"
+  locale="en"
+  canonicalPath={getLegalPath('en', 'legalNotice')}
+  alternates={getLegalAlternates('legalNotice')}
 >
   <h2>Information according to &sect; 5 TMG</h2>
 

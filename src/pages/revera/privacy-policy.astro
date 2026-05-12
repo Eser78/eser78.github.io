@@ -1,15 +1,19 @@
 ---
 import LegalLayout from '../../layouts/LegalLayout.astro';
+import { getLegalAlternates, getLegalPath } from '../../lib/locales';
 ---
 
 <LegalLayout
-  title="Privacy Policy - Night Mixer"
-  description="Privacy Policy for the Night Mixer app by ESOciate."
+  title="Privacy Policy - Revera"
+  description="Privacy Policy for the Revera app by ESOciate."
   heading="Privacy Policy"
   lastUpdated="March 17, 2026"
+  locale="en"
+  canonicalPath={getLegalPath('en', 'privacyPolicy')}
+  alternates={getLegalAlternates('privacyPolicy')}
 >
   <p>
-    This privacy policy is applicable to the Night Mixer app (hereinafter referred to as
+    This privacy policy is applicable to the Revera app (hereinafter referred to as
     "Application") for mobile devices, which was developed by ESOciate - Eser Kayali (hereinafter
     referred to as "Service Provider") as a Commercial service. This service is provided "AS IS".
   </p>

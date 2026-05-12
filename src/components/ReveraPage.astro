@@ -1,0 +1,1681 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import {
+  getLegalPath,
+  getReveraAlternates,
+  localeConfig,
+  supportedLocales,
+  type Locale,
+} from '../lib/locales';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'en' } = Astro.props;
+
+const content = {
+  en: {
+    metaTitle: 'Revera - Sleep Sounds, Binaural Audio & Gentle Alarms',
+    metaDescription:
+      'Mix free sleep sounds, use alpha binaural tones for free, and unlock sleep timers, more frequencies and alarms with Premium.',
+    homePath: '/',
+    languageLabel: 'Language selection',
+    nav: {
+      features: 'Features',
+      gallery: 'Gallery',
+      download: 'Download',
+    },
+    hero: {
+      titleLine: 'Create Your Perfect',
+      titleAccent: 'Sleep Soundscape',
+      subtitle:
+        'Combine all calming sleep sounds for free, start binaural routines with free alpha frequencies, and unlock sleep timers, more frequencies and gentle alarms with Premium.',
+      badges: ['All sounds free', 'Alpha binaural free', 'Timer & alarms Premium'],
+    },
+    store: {
+      appStoreLabel: 'Download on the',
+      googlePlayLabel: 'GET IT ON',
+      appStoreAria: 'Download on the App Store',
+      googlePlayAria: 'Get it on Google Play',
+    },
+    features: {
+      titleStart: 'Everything You Need to',
+      titleAccent: 'Relax',
+      freeLabel: 'Free',
+      mixedLabel: 'Free + Premium',
+      premiumLabel: 'Premium',
+      items: [
+        {
+          title: 'Mix & Match Sounds',
+          description:
+            'Combine multiple sleep sounds and adjust each volume to create your ideal atmosphere.',
+          badge: 'Free',
+        },
+        {
+          title: 'Many Sleep Sounds',
+          description:
+            'Explore every rain, thunder, nature, water and ocean sound for relaxing, meditating and falling asleep.',
+          badge: 'Free',
+        },
+        {
+          title: 'Binaural Sequences',
+          description:
+            'Use alpha frequencies for free, then unlock the remaining binaural frequencies with Premium.',
+          badge: 'Free + Premium',
+        },
+        {
+          title: 'Sleep Timer',
+          description:
+            'Choose when your sounds stop, use custom durations and add a gentle fade-out.',
+          badge: 'Premium',
+        },
+        {
+          title: 'Smart Alarms',
+          description:
+            'Set one-time, daily, weekday or custom alarms to start your morning calmly.',
+          badge: 'Premium',
+        },
+        {
+          title: 'Alarm Songs',
+          description:
+            'Pick from a wide selection of wake-up tracks and preview each song before choosing.',
+          badge: 'Premium',
+        },
+      ],
+    },
+    gallery: {
+      titleStart: 'See It in',
+      titleAccent: 'Action',
+      imageAlts: [
+        'Sleep sound mixer',
+        'Sound library',
+        'Binaural sequence builder',
+        'Alarm setup',
+        'Alarm song selection',
+        'Sleep timer with fade-out',
+      ],
+    },
+    pricing: {
+      titleStart: 'Start Free',
+      titleAccent: 'Upgrade for More',
+      subtitle: 'All sleep sounds and alpha binaural frequencies are free. Premium adds timers, alarms and the remaining binaural frequencies.',
+      free: 'Free',
+      freePrice: 'Included',
+      premium: 'Premium',
+      premiumPrice: 'Upgrade',
+      popular: 'Full Experience',
+      freeItems: ['All sleep sounds', 'Mix multiple sounds', 'Alpha binaural frequencies', 'Save calming presets'],
+      premiumItems: ['Remaining binaural frequencies', 'Sleep timer with fade-out', 'Smart alarms', 'Alarm song selection'],
+    },
+    download: {
+      heading: 'Ready to Sleep Better?',
+      text: 'Download Revera and create your perfect soundscape tonight.',
+    },
+    footer: {
+      rights: 'All rights reserved.',
+    },
+  },
+  de: {
+    metaTitle: 'Revera - Schlafsounds, binaurale Klänge & sanfte Wecker',
+    metaDescription:
+      'Mische kostenlose Schlafsounds, nutze Alpha-Frequenzen gratis und schalte Timer, weitere Frequenzen und Wecker mit Premium frei.',
+    homePath: '/de',
+    languageLabel: 'Sprachauswahl',
+    nav: {
+      features: 'Funktionen',
+      gallery: 'Galerie',
+      download: 'Download',
+    },
+    hero: {
+      titleLine: 'Erstelle deine perfekte',
+      titleAccent: 'Schlafklangwelt',
+      subtitle:
+        'Kombiniere alle beruhigenden Schlafsounds kostenlos, starte binaurale Routinen mit gratis Alpha-Frequenzen und schalte Schlaf-Timer, weitere Frequenzen und sanfte Wecker mit Premium frei.',
+      badges: ['Alle Sounds gratis', 'Alpha binaural gratis', 'Timer & Wecker Premium'],
+    },
+    store: {
+      appStoreLabel: 'Laden im',
+      googlePlayLabel: 'JETZT BEI',
+      appStoreAria: 'Im App Store laden',
+      googlePlayAria: 'Bei Google Play herunterladen',
+    },
+    features: {
+      titleStart: 'Alles zum',
+      titleAccent: 'Entspannen',
+      freeLabel: 'Gratis',
+      mixedLabel: 'Gratis + Premium',
+      premiumLabel: 'Premium',
+      items: [
+        {
+          title: 'Sounds frei mischen',
+          description:
+            'Kombiniere mehrere Schlafsounds und passe jede Lautstärke an, bis deine Atmosphäre stimmt.',
+          badge: 'Gratis',
+        },
+        {
+          title: 'Viele Schlafsounds',
+          description:
+            'Entdecke alle Regen-, Donner-, Natur-, Wasser- und Ozean-Sounds zum Entspannen, Meditieren und Einschlafen.',
+          badge: 'Gratis',
+        },
+        {
+          title: 'Binaurale Sequenzen',
+          description:
+            'Nutze Alpha-Frequenzen gratis und schalte die restlichen binauralen Frequenzen mit Premium frei.',
+          badge: 'Gratis + Premium',
+        },
+        {
+          title: 'Schlaf-Timer',
+          description:
+            'Lege fest, wann deine Sounds enden, nutze eigene Laufzeiten und aktiviere ein sanftes Fade-out.',
+          badge: 'Premium',
+        },
+        {
+          title: 'Smarte Wecker',
+          description:
+            'Erstelle einmalige, tägliche, Wochentags- oder eigene Wecker für einen ruhigeren Morgen.',
+          badge: 'Premium',
+        },
+        {
+          title: 'Wecker-Songs',
+          description:
+            'Wähle aus vielen Wake-up-Tracks und höre jeden Song vor der Auswahl kurz an.',
+          badge: 'Premium',
+        },
+      ],
+    },
+    gallery: {
+      titleStart: 'Revera',
+      titleAccent: 'in Aktion',
+      imageAlts: [
+        'Schlafsound-Mixer',
+        'Sound-Bibliothek',
+        'Binauraler Sequenz-Builder',
+        'Wecker einrichten',
+        'Wecker-Songauswahl',
+        'Schlaf-Timer mit Fade-out',
+      ],
+    },
+    pricing: {
+      titleStart: 'Gratis starten',
+      titleAccent: 'mit Premium erweitern',
+      subtitle: 'Alle Schlafsounds und Alpha-Frequenzen sind gratis. Premium ergänzt Timer, Wecker und die restlichen binauralen Frequenzen.',
+      free: 'Gratis',
+      freePrice: 'Enthalten',
+      premium: 'Premium',
+      premiumPrice: 'Upgrade',
+      popular: 'Volles Erlebnis',
+      freeItems: ['Alle Schlafsounds', 'Mehrere Sounds mischen', 'Alpha-Frequenzen', 'Beruhigende Presets speichern'],
+      premiumItems: ['Restliche binaurale Frequenzen', 'Schlaf-Timer mit Fade-out', 'Smarte Wecker', 'Wecker-Songauswahl'],
+    },
+    download: {
+      heading: 'Bereit für besseren Schlaf?',
+      text: 'Lade Revera herunter und erstelle heute Abend deine perfekte Klangwelt.',
+    },
+    footer: {
+      rights: 'Alle Rechte vorbehalten.',
+    },
+  },
+  es: {
+    metaTitle: 'Revera - Sonidos para dormir, audio binaural y alarmas suaves',
+    metaDescription:
+      'Mezcla sonidos gratis para dormir, usa frecuencias alfa gratis y desbloquea temporizadores, más frecuencias y alarmas con Premium.',
+    homePath: '/es',
+    languageLabel: 'Selección de idioma',
+    nav: {
+      features: 'Funciones',
+      gallery: 'Galería',
+      download: 'Descargar',
+    },
+    hero: {
+      titleLine: 'Crea tu paisaje sonoro',
+      titleAccent: 'perfecto para dormir',
+      subtitle:
+        'Combina gratis todos los sonidos relajantes para dormir, empieza rutinas binaurales con frecuencias alfa gratis y desbloquea temporizadores, más frecuencias y alarmas suaves con Premium.',
+      badges: ['Todos los sonidos gratis', 'Alfa binaural gratis', 'Temporizador y alarmas Premium'],
+    },
+    store: {
+      appStoreLabel: 'Descárgalo en',
+      googlePlayLabel: 'DISPONIBLE EN',
+      appStoreAria: 'Descargar en App Store',
+      googlePlayAria: 'Consíguelo en Google Play',
+    },
+    features: {
+      titleStart: 'Todo lo que necesitas para',
+      titleAccent: 'relajarte',
+      freeLabel: 'Gratis',
+      mixedLabel: 'Gratis + Premium',
+      premiumLabel: 'Premium',
+      items: [
+        {
+          title: 'Mezcla sonidos',
+          description:
+            'Combina varios sonidos para dormir y ajusta cada volumen para crear tu ambiente ideal.',
+          badge: 'Gratis',
+        },
+        {
+          title: 'Muchos sonidos',
+          description:
+            'Explora todos los sonidos de lluvia, truenos, naturaleza, agua y océano para relajarte, meditar y dormir.',
+          badge: 'Gratis',
+        },
+        {
+          title: 'Secuencias binaurales',
+          description:
+            'Usa las frecuencias alfa gratis y desbloquea el resto de frecuencias binaurales con Premium.',
+          badge: 'Gratis + Premium',
+        },
+        {
+          title: 'Temporizador de sueño',
+          description:
+            'Elige cuándo terminan los sonidos, usa duraciones personalizadas y añade un fundido suave.',
+          badge: 'Premium',
+        },
+        {
+          title: 'Alarmas inteligentes',
+          description:
+            'Configura alarmas únicas, diarias, entre semana o personalizadas para empezar la mañana con calma.',
+          badge: 'Premium',
+        },
+        {
+          title: 'Canciones de alarma',
+          description:
+            'Elige entre muchas pistas para despertar y previsualiza cada canción antes de seleccionarla.',
+          badge: 'Premium',
+        },
+      ],
+    },
+    gallery: {
+      titleStart: 'Revera',
+      titleAccent: 'en acción',
+      imageAlts: [
+        'Mezclador de sonidos para dormir',
+        'Biblioteca de sonidos',
+        'Constructor de secuencias binaurales',
+        'Configuración de alarma',
+        'Selección de canciones de alarma',
+        'Temporizador de sueño con fundido',
+      ],
+    },
+    pricing: {
+      titleStart: 'Empieza gratis',
+      titleAccent: 'mejora con Premium',
+      subtitle: 'Todos los sonidos para dormir y las frecuencias alfa son gratis. Premium añade temporizadores, alarmas y el resto de frecuencias binaurales.',
+      free: 'Gratis',
+      freePrice: 'Incluido',
+      premium: 'Premium',
+      premiumPrice: 'Mejorar',
+      popular: 'Experiencia completa',
+      freeItems: ['Todos los sonidos para dormir', 'Mezclar varios sonidos', 'Frecuencias alfa', 'Guardar presets relajantes'],
+      premiumItems: ['Resto de frecuencias binaurales', 'Temporizador con fundido', 'Alarmas inteligentes', 'Canciones de alarma'],
+    },
+    download: {
+      heading: '¿Listo para dormir mejor?',
+      text: 'Descarga Revera y crea tu paisaje sonoro perfecto esta noche.',
+    },
+    footer: {
+      rights: 'Todos los derechos reservados.',
+    },
+  },
+  fr: {
+    metaTitle: 'Revera - Sons pour dormir, audio binaural et réveils doux',
+    metaDescription:
+      'Mélangez des sons gratuits pour dormir, utilisez les fréquences alpha gratuites et débloquez minuteurs, autres fréquences et réveils avec Premium.',
+    homePath: '/fr',
+    languageLabel: 'Sélection de la langue',
+    nav: {
+      features: 'Fonctionnalités',
+      gallery: 'Galerie',
+      download: 'Télécharger',
+    },
+    hero: {
+      titleLine: 'Créez votre ambiance sonore',
+      titleAccent: 'parfaite pour dormir',
+      subtitle:
+        'Combinez gratuitement tous les sons apaisants pour dormir, commencez les routines binaurales avec les fréquences alpha gratuites et débloquez minuteurs, autres fréquences et réveils doux avec Premium.',
+      badges: ['Tous les sons gratuits', 'Alpha binaural gratuit', 'Minuteur et réveils Premium'],
+    },
+    store: {
+      appStoreLabel: 'Télécharger dans',
+      googlePlayLabel: 'DISPONIBLE SUR',
+      appStoreAria: 'Télécharger sur l’App Store',
+      googlePlayAria: 'Disponible sur Google Play',
+    },
+    features: {
+      titleStart: 'Tout ce qu’il faut pour',
+      titleAccent: 'se détendre',
+      freeLabel: 'Gratuit',
+      mixedLabel: 'Gratuit + Premium',
+      premiumLabel: 'Premium',
+      items: [
+        {
+          title: 'Mélangez les sons',
+          description:
+            'Combinez plusieurs sons de sommeil et ajustez chaque volume pour créer votre ambiance idéale.',
+          badge: 'Gratuit',
+        },
+        {
+          title: 'Nombreux sons',
+          description:
+            'Explorez tous les sons de pluie, tonnerre, nature, eau et océan pour vous détendre, méditer et vous endormir.',
+          badge: 'Gratuit',
+        },
+        {
+          title: 'Séquences binaurales',
+          description:
+            'Utilisez les fréquences alpha gratuitement, puis débloquez les autres fréquences binaurales avec Premium.',
+          badge: 'Gratuit + Premium',
+        },
+        {
+          title: 'Minuteur de sommeil',
+          description:
+            'Choisissez quand les sons s’arrêtent, utilisez des durées personnalisées et ajoutez un fondu doux.',
+          badge: 'Premium',
+        },
+        {
+          title: 'Réveils intelligents',
+          description:
+            'Créez des réveils uniques, quotidiens, en semaine ou personnalisés pour commencer la journée calmement.',
+          badge: 'Premium',
+        },
+        {
+          title: 'Chansons de réveil',
+          description:
+            'Choisissez parmi de nombreuses pistes de réveil et écoutez chaque chanson avant de la sélectionner.',
+          badge: 'Premium',
+        },
+      ],
+    },
+    gallery: {
+      titleStart: 'Revera',
+      titleAccent: 'en action',
+      imageAlts: [
+        'Mixeur de sons pour dormir',
+        'Bibliothèque de sons',
+        'Créateur de séquences binaurales',
+        'Configuration du réveil',
+        'Sélection de chansons de réveil',
+        'Minuteur de sommeil avec fondu',
+      ],
+    },
+    pricing: {
+      titleStart: 'Commencez gratuit',
+      titleAccent: 'passez à Premium',
+      subtitle: 'Tous les sons pour dormir et les fréquences alpha sont gratuits. Premium ajoute les minuteurs, les réveils et les autres fréquences binaurales.',
+      free: 'Gratuit',
+      freePrice: 'Inclus',
+      premium: 'Premium',
+      premiumPrice: 'Débloquer',
+      popular: 'Expérience complète',
+      freeItems: ['Tous les sons pour dormir', 'Mixer plusieurs sons', 'Fréquences alpha', 'Enregistrer des presets calmes'],
+      premiumItems: ['Autres fréquences binaurales', 'Minuteur avec fondu', 'Réveils intelligents', 'Chansons de réveil'],
+    },
+    download: {
+      heading: 'Prêt à mieux dormir ?',
+      text: 'Téléchargez Revera et créez votre ambiance sonore parfaite ce soir.',
+    },
+    footer: {
+      rights: 'Tous droits réservés.',
+    },
+  },
+  it: {
+    metaTitle: 'Revera - Suoni per dormire, audio binaurale e sveglie delicate',
+    metaDescription:
+      'Mixa suoni gratuiti per dormire, usa gratis le frequenze alfa e sblocca timer, altre frequenze e sveglie con Premium.',
+    homePath: '/it',
+    languageLabel: 'Selezione lingua',
+    nav: {
+      features: 'Funzioni',
+      gallery: 'Galleria',
+      download: 'Download',
+    },
+    hero: {
+      titleLine: 'Crea il tuo paesaggio sonoro',
+      titleAccent: 'perfetto per dormire',
+      subtitle:
+        'Combina gratis tutti i suoni rilassanti per dormire, avvia routine binaurali con frequenze alfa gratuite e sblocca timer, altre frequenze e sveglie delicate con Premium.',
+      badges: ['Tutti i suoni gratis', 'Alfa binaurale gratis', 'Timer e sveglie Premium'],
+    },
+    store: {
+      appStoreLabel: 'Scarica su',
+      googlePlayLabel: 'DISPONIBILE SU',
+      appStoreAria: 'Scarica su App Store',
+      googlePlayAria: 'Disponibile su Google Play',
+    },
+    features: {
+      titleStart: 'Tutto ciò che serve per',
+      titleAccent: 'rilassarti',
+      freeLabel: 'Gratis',
+      mixedLabel: 'Gratis + Premium',
+      premiumLabel: 'Premium',
+      items: [
+        {
+          title: 'Mixa i suoni',
+          description:
+            'Combina più suoni per dormire e regola ogni volume per creare la tua atmosfera ideale.',
+          badge: 'Gratis',
+        },
+        {
+          title: 'Tanti suoni',
+          description:
+            'Esplora tutti i suoni di pioggia, tuoni, natura, acqua e oceano per rilassarti, meditare e addormentarti.',
+          badge: 'Gratis',
+        },
+        {
+          title: 'Sequenze binaurali',
+          description:
+            'Usa gratis le frequenze alfa e sblocca le restanti frequenze binaurali con Premium.',
+          badge: 'Gratis + Premium',
+        },
+        {
+          title: 'Timer per il sonno',
+          description:
+            'Scegli quando i suoni devono terminare, usa durate personalizzate e aggiungi una dissolvenza delicata.',
+          badge: 'Premium',
+        },
+        {
+          title: 'Sveglie intelligenti',
+          description:
+            'Imposta sveglie una tantum, giornaliere, feriali o personalizzate per iniziare la mattina con calma.',
+          badge: 'Premium',
+        },
+        {
+          title: 'Brani per sveglia',
+          description:
+            'Scegli tra molte tracce di risveglio e ascolta l’anteprima di ogni brano prima di selezionarlo.',
+          badge: 'Premium',
+        },
+      ],
+    },
+    gallery: {
+      titleStart: 'Revera',
+      titleAccent: 'in azione',
+      imageAlts: [
+        'Mixer di suoni per dormire',
+        'Libreria di suoni',
+        'Builder di sequenze binaurali',
+        'Impostazione sveglia',
+        'Selezione brani per sveglia',
+        'Timer del sonno con dissolvenza',
+      ],
+    },
+    pricing: {
+      titleStart: 'Inizia gratis',
+      titleAccent: 'passa a Premium',
+      subtitle: 'Tutti i suoni per dormire e le frequenze alfa sono gratis. Premium aggiunge timer, sveglie e le restanti frequenze binaurali.',
+      free: 'Gratis',
+      freePrice: 'Incluso',
+      premium: 'Premium',
+      premiumPrice: 'Sblocca',
+      popular: 'Esperienza completa',
+      freeItems: ['Tutti i suoni per dormire', 'Mixare più suoni', 'Frequenze alfa', 'Salvare preset rilassanti'],
+      premiumItems: ['Restanti frequenze binaurali', 'Timer con dissolvenza', 'Sveglie intelligenti', 'Brani per sveglia'],
+    },
+    download: {
+      heading: 'Pronto a dormire meglio?',
+      text: 'Scarica Revera e crea stasera il tuo paesaggio sonoro perfetto.',
+    },
+    footer: {
+      rights: 'Tutti i diritti riservati.',
+    },
+  },
+  pt: {
+    metaTitle: 'Revera - Sons para dormir, áudio binaural e alarmes suaves',
+    metaDescription:
+      'Misture sons grátis para dormir, use frequências alfa grátis e desbloqueie timers, outras frequências e alarmes com Premium.',
+    homePath: '/pt',
+    languageLabel: 'Seleção de idioma',
+    nav: {
+      features: 'Funcionalidades',
+      gallery: 'Galeria',
+      download: 'Baixar',
+    },
+    hero: {
+      titleLine: 'Crie a sua paisagem sonora',
+      titleAccent: 'perfeita para dormir',
+      subtitle:
+        'Combine grátis todos os sons relaxantes para dormir, comece rotinas binaurais com frequências alfa grátis e desbloqueie timers, outras frequências e alarmes suaves com Premium.',
+      badges: ['Todos os sons grátis', 'Alfa binaural grátis', 'Timer e alarmes Premium'],
+    },
+    store: {
+      appStoreLabel: 'Baixar na',
+      googlePlayLabel: 'DISPONÍVEL NO',
+      appStoreAria: 'Baixar na App Store',
+      googlePlayAria: 'Disponível no Google Play',
+    },
+    features: {
+      titleStart: 'Tudo que você precisa para',
+      titleAccent: 'relaxar',
+      freeLabel: 'Grátis',
+      mixedLabel: 'Grátis + Premium',
+      premiumLabel: 'Premium',
+      items: [
+        {
+          title: 'Misture sons',
+          description:
+            'Combine vários sons para dormir e ajuste cada volume para criar o ambiente ideal.',
+          badge: 'Grátis',
+        },
+        {
+          title: 'Muitos sons',
+          description:
+            'Explore todos os sons de chuva, trovão, natureza, água e oceano para relaxar, meditar e adormecer.',
+          badge: 'Grátis',
+        },
+        {
+          title: 'Sequências binaurais',
+          description:
+            'Use frequências alfa grátis e desbloqueie as demais frequências binaurais com Premium.',
+          badge: 'Grátis + Premium',
+        },
+        {
+          title: 'Timer de sono',
+          description:
+            'Escolha quando os sons devem terminar, use durações personalizadas e adicione um fade-out suave.',
+          badge: 'Premium',
+        },
+        {
+          title: 'Alarmes inteligentes',
+          description:
+            'Configure alarmes únicos, diários, em dias úteis ou personalizados para começar a manhã com calma.',
+          badge: 'Premium',
+        },
+        {
+          title: 'Músicas de alarme',
+          description:
+            'Escolha entre várias faixas para acordar e pré-escute cada música antes de selecionar.',
+          badge: 'Premium',
+        },
+      ],
+    },
+    gallery: {
+      titleStart: 'Revera',
+      titleAccent: 'em ação',
+      imageAlts: [
+        'Mixer de sons para dormir',
+        'Biblioteca de sons',
+        'Criador de sequências binaurais',
+        'Configuração de alarme',
+        'Seleção de músicas de alarme',
+        'Timer de sono com fade-out',
+      ],
+    },
+    pricing: {
+      titleStart: 'Comece grátis',
+      titleAccent: 'avance com Premium',
+      subtitle: 'Todos os sons para dormir e as frequências alfa são grátis. Premium adiciona timers, alarmes e as demais frequências binaurais.',
+      free: 'Grátis',
+      freePrice: 'Incluído',
+      premium: 'Premium',
+      premiumPrice: 'Desbloquear',
+      popular: 'Experiência completa',
+      freeItems: ['Todos os sons para dormir', 'Misturar vários sons', 'Frequências alfa', 'Salvar presets relaxantes'],
+      premiumItems: ['Demais frequências binaurais', 'Timer com fade-out', 'Alarmes inteligentes', 'Músicas de alarme'],
+    },
+    download: {
+      heading: 'Pronto para dormir melhor?',
+      text: 'Baixe Revera e crie a sua paisagem sonora perfeita hoje à noite.',
+    },
+    footer: {
+      rights: 'Todos os direitos reservados.',
+    },
+  },
+};
+
+const t = content[locale];
+const localeLabels = localeConfig[locale].labels;
+const assetBase = '/revera/images';
+const appStoreUrl = 'https://apps.apple.com/us/app/revera/id6761068036';
+const screenshots = [1, 2, 3, 4, 5, 6];
+const featureIcons = [
+  '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>',
+  '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"/><circle cx="12" cy="12" r="4"/></svg>',
+  '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h3l2-6 4 12 2-6h7"/><path d="M12 3a9 9 0 0 1 0 18"/></svg>',
+  '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+  '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 1 0 12 0"/><path d="M4 4l3 3"/><path d="M20 4l-3 3"/><path d="M12 14v3"/><path d="M9 21h6"/></svg>',
+  '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/><path d="M4 4l2 2"/><path d="M20 20l-2-2"/></svg>',
+];
+---
+
+<BaseLayout
+  title={t.metaTitle}
+  description={t.metaDescription}
+  lang={locale}
+  canonicalPath={localeConfig[locale].reveraPath}
+  alternates={getReveraAlternates()}
+  detectBrowserLocale={locale === 'en'}
+>
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="stars"></div>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a href={t.homePath} class="nav-brand">
+          <img src={`${assetBase}/AppIcon1024.png`} alt="Revera" class="nav-icon" />
+          <span>Revera</span>
+        </a>
+        <div class="nav-links">
+          <a href="#features">{t.nav.features}</a>
+          <a href="#gallery">{t.nav.gallery}</a>
+          <a href="#download" class="nav-cta">{t.nav.download}</a>
+        </div>
+        <div class="language-switcher" aria-label={t.languageLabel}>
+          {
+            supportedLocales.map((code) => (
+              <a
+                href={localeConfig[code].reveraPath}
+                class={`language-option${locale === code ? ' active' : ''}`}
+                aria-current={locale === code ? 'page' : undefined}
+                data-preferred-locale={code}
+              >
+                {localeConfig[code].label}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </nav>
+
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>{t.hero.titleLine}<br /><span class="gradient-text">{t.hero.titleAccent}</span></h1>
+        <p class="hero-subtitle">{t.hero.subtitle}</p>
+        <div class="hero-actions">
+          <a href={appStoreUrl} class="store-btn" aria-label={t.store.appStoreAria}>
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            <div>
+              <span class="store-label">{t.store.appStoreLabel}</span>
+              <span class="store-name">App Store</span>
+            </div>
+          </a>
+          <a href="#" class="store-btn" aria-label={t.store.googlePlayAria}>
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M3 20.5v-17c0-.59.34-1.11.84-1.35L13.69 12l-9.85 9.85c-.5-.24-.84-.76-.84-1.35m13.81-5.38L6.05 21.34l8.49-8.49 2.27 2.27m3.35-4.31c.34.27.56.69.56 1.19s-.22.92-.56 1.19l-1.97 1.13-2.5-2.5 2.5-2.5 1.97 1.13zM6.05 2.66l10.76 6.22-2.27 2.27L6.05 2.66z"/></svg>
+            <div>
+              <span class="store-label">{t.store.googlePlayLabel}</span>
+              <span class="store-name">Google Play</span>
+            </div>
+          </a>
+        </div>
+        <div class="hero-badges">
+          {t.hero.badges.map((badge) => <span class="badge">{badge}</span>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="features">
+    <div class="container">
+      <h2 class="section-title">{t.features.titleStart} <span class="gradient-text">{t.features.titleAccent}</span></h2>
+      <div class="feature-grid">
+        {
+          t.features.items.map((item, index) => (
+            <div class="feature-card">
+              <div class="feature-icon" set:html={featureIcons[index]}></div>
+              <span class={`feature-badge ${
+                item.badge === t.features.premiumLabel
+                  ? 'premium'
+                  : item.badge === t.features.mixedLabel
+                    ? 'mixed'
+                    : 'free'
+              }`}>
+                {item.badge}
+              </span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="screenshots">
+    <div class="container">
+      <h2 class="section-title">{t.gallery.titleStart} <span class="gradient-text">{t.gallery.titleAccent}</span></h2>
+      <div class="screenshot-scroll" tabindex="0" aria-label={`${t.gallery.titleStart} ${t.gallery.titleAccent}`}>
+        <div class="screenshot-track">
+          {
+            screenshots.map((screen, index) => (
+              <div class="screenshot-item">
+                <img src={`${assetBase}/V2_preview${screen}.png`} alt={t.gallery.imageAlts[index]} />
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing">
+    <div class="container">
+      <h2 class="section-title">{t.pricing.titleStart} <span class="gradient-text">{t.pricing.titleAccent}</span></h2>
+      <p class="section-subtitle">{t.pricing.subtitle}</p>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>{t.pricing.free}</h3>
+          <div class="price">{t.pricing.freePrice}</div>
+          <ul>
+            {t.pricing.freeItems.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+        <div class="pricing-card popular">
+          <div class="popular-badge">{t.pricing.popular}</div>
+          <h3>{t.pricing.premium}</h3>
+          <div class="price">{t.pricing.premiumPrice}</div>
+          <ul>
+            {t.pricing.premiumItems.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="download" class="download">
+    <div class="container">
+      <img src={`${assetBase}/AppIcon1024.png`} alt="Revera" class="download-icon" />
+      <h2>{t.download.heading}</h2>
+      <p>{t.download.text}</p>
+      <div class="store-buttons">
+        <a href={appStoreUrl} class="store-btn" aria-label={t.store.appStoreAria}>
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <div>
+            <span class="store-label">{t.store.appStoreLabel}</span>
+            <span class="store-name">App Store</span>
+          </div>
+        </a>
+        <a href="#" class="store-btn" aria-label={t.store.googlePlayAria}>
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M3 20.5v-17c0-.59.34-1.11.84-1.35L13.69 12l-9.85 9.85c-.5-.24-.84-.76-.84-1.35m13.81-5.38L6.05 21.34l8.49-8.49 2.27 2.27m3.35-4.31c.34.27.56.69.56 1.19s-.22.92-.56 1.19l-1.97 1.13-2.5-2.5 2.5-2.5 1.97 1.13zM6.05 2.66l10.76 6.22-2.27 2.27L6.05 2.66z"/></svg>
+          <div>
+            <span class="store-label">{t.store.googlePlayLabel}</span>
+            <span class="store-name">Google Play</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src={`${assetBase}/AppIcon1024.png`} alt="Revera" class="footer-icon" />
+          <p>Revera</p>
+          <span class="footer-company">by ESOciate</span>
+        </div>
+        <div class="footer-section">
+          <h4>{localeLabels.legal}</h4>
+          <a href={getLegalPath(locale, 'privacyPolicy')}>{localeLabels.privacyPolicy}</a>
+          <a href={getLegalPath(locale, 'termsOfUse')}>{localeLabels.termsOfUse}</a>
+          <a href={getLegalPath(locale, 'legalNotice')}>{localeLabels.legalNotice}</a>
+        </div>
+        <div class="footer-section">
+          <h4>{localeLabels.contact}</h4>
+          <a href="mailto:support@esociate.it.com">support@esociate.it.com</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; {new Date().getFullYear()} ESOciate - Eser Kayali. {t.footer.rights}</p>
+      </div>
+    </div>
+  </footer>
+</BaseLayout>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1rem 0;
+    background: rgba(13, 10, 26, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(124, 58, 237, 0.15);
+  }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--white);
+    font-weight: 700;
+    font-size: 1.1rem;
+    flex: 0 0 auto;
+  }
+
+  .nav-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 0.5rem;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-left: auto;
+    flex: 0 1 auto;
+  }
+
+  .nav-links a {
+    color: var(--gray-light);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .nav-links a:hover {
+    color: var(--white);
+  }
+
+  .nav-cta {
+    background: var(--purple-bright);
+    color: var(--white) !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.5rem;
+    font-weight: 600 !important;
+  }
+
+  .nav-cta:hover {
+    background: #6d28d9;
+  }
+
+  .language-switcher {
+    display: inline-flex;
+    gap: 0.25rem;
+    padding: 0.2rem;
+    border: 1px solid rgba(124, 58, 237, 0.25);
+    border-radius: 0.65rem;
+    background: rgba(124, 58, 237, 0.08);
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .language-switcher::-webkit-scrollbar {
+    display: none;
+  }
+
+  .language-option {
+    flex: 0 0 auto;
+    min-width: 2.25rem;
+    padding: 0.3rem 0.55rem;
+    border-radius: 0.45rem;
+    color: var(--gray-light);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .language-option:hover,
+  .language-option.active {
+    background: var(--purple-bright);
+    color: var(--white);
+  }
+
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding-top: 5rem;
+  }
+
+  .features,
+  .screenshots,
+  .pricing,
+  .download {
+    scroll-margin-top: 6rem;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 20%, rgba(124, 58, 237, 0.3) 0%, transparent 60%),
+      radial-gradient(ellipse at 30% 80%, rgba(124, 58, 237, 0.15) 0%, transparent 50%);
+    z-index: 0;
+  }
+
+  .stars {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.3), transparent),
+      radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.2), transparent),
+      radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.4), transparent),
+      radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.2), transparent),
+      radial-gradient(2px 2px at 160px 30px, rgba(255, 255, 255, 0.3), transparent);
+    background-size: 200px 100px;
+    z-index: 0;
+    animation: twinkle 4s ease-in-out infinite alternate;
+  }
+
+  @keyframes twinkle {
+    0% { opacity: 0.5; }
+    100% { opacity: 1; }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    flex: 1;
+  }
+
+  .hero-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--purple-light), var(--purple-glow), #e879f9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--gray-light);
+    max-width: 500px;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-badges {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    background: rgba(124, 58, 237, 0.15);
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    color: var(--purple-light);
+    padding: 0.35rem 0.85rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .features {
+    padding: 6rem 0;
+    background: linear-gradient(180deg, var(--purple-deep) 0%, var(--purple-dark) 100%);
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    width: 100%;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .section-subtitle {
+    text-align: center;
+    color: var(--gray-light);
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .feature-card {
+    background: rgba(124, 58, 237, 0.08);
+    border: 1px solid rgba(124, 58, 237, 0.2);
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    min-width: 0;
+  }
+
+  .feature-card:hover {
+    background: rgba(124, 58, 237, 0.14);
+    border-color: rgba(124, 58, 237, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .feature-icon {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, var(--purple-bright), #9333ea);
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    color: var(--white);
+  }
+
+  .feature-badge {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 0.85rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 0.45rem;
+    border: 1px solid rgba(167, 139, 250, 0.35);
+    color: var(--purple-light);
+    background: rgba(124, 58, 237, 0.1);
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .feature-badge.premium {
+    border-color: rgba(232, 121, 249, 0.45);
+    color: #f0abfc;
+    background: rgba(232, 121, 249, 0.12);
+  }
+
+  .feature-badge.mixed {
+    border-color: rgba(192, 132, 252, 0.45);
+    color: var(--white-muted);
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.16), rgba(232, 121, 249, 0.12));
+  }
+
+  .feature-card h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .feature-card p {
+    color: var(--gray-light);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .screenshots {
+    padding: 6rem 0;
+    background: var(--purple-dark);
+  }
+
+  .screenshots .container {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .screenshot-scroll {
+    margin-top: 3rem;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 1rem;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x mandatory;
+    touch-action: pan-x;
+  }
+
+  .screenshot-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .screenshot-track {
+    display: flex;
+    gap: 1.5rem;
+    width: max-content;
+    min-width: 100%;
+    justify-content: center;
+    padding: 0 2rem;
+  }
+
+  .screenshot-item {
+    flex-shrink: 0;
+    width: 280px;
+    scroll-snap-align: center;
+  }
+
+  .screenshot-item img {
+    width: 100%;
+    border-radius: 1.25rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease;
+  }
+
+  .screenshot-item img:hover {
+    transform: scale(1.03);
+  }
+
+  .pricing {
+    padding: 6rem 0;
+    background: linear-gradient(180deg, var(--purple-dark) 0%, var(--purple-deep) 100%);
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    max-width: 700px;
+    margin: 3rem auto 0;
+  }
+
+  .pricing-card {
+    background: rgba(124, 58, 237, 0.08);
+    border: 1px solid rgba(124, 58, 237, 0.2);
+    border-radius: 1.25rem;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    position: relative;
+    min-width: 0;
+  }
+
+  .pricing-card.popular {
+    border-color: var(--purple-bright);
+    background: rgba(124, 58, 237, 0.15);
+    box-shadow: 0 0 40px rgba(124, 58, 237, 0.2);
+  }
+
+  .popular-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--purple-bright), #9333ea);
+    color: var(--white);
+    padding: 0.3rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .pricing-card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--gray-light);
+    margin-bottom: 1rem;
+  }
+
+  .price {
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.15;
+  }
+
+  .price span {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--gray-light);
+  }
+
+  .pricing-card ul {
+    list-style: none;
+    text-align: left;
+  }
+
+  .pricing-card li {
+    padding: 0.5rem 0;
+    color: var(--white-muted);
+    font-size: 0.95rem;
+  }
+
+  .pricing-card li::before {
+    content: '\2713';
+    color: var(--purple-bright);
+    margin-right: 0.5rem;
+    font-weight: 700;
+  }
+
+  .download {
+    padding: 6rem 0;
+    text-align: center;
+    background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.15) 0%, transparent 70%);
+  }
+
+  .download-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 1.5rem;
+    margin: 0 auto 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .download h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+  }
+
+  .download p {
+    color: var(--gray-light);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+
+  .store-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .store-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--white);
+    color: #111;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+    min-width: 0;
+  }
+
+  .store-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    color: #111;
+  }
+
+  .store-label {
+    display: block;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .store-name {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .footer {
+    background: var(--purple-deep);
+    border-top: 1px solid rgba(124, 58, 237, 0.2);
+    padding: 3rem 0 1.5rem;
+  }
+
+  .footer-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .footer-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-brand p {
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  .footer-company {
+    color: var(--gray-light);
+    font-size: 0.85rem;
+  }
+
+  .footer-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-section h4 {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+    color: var(--white);
+  }
+
+  .footer-section a {
+    color: var(--gray-light);
+    font-size: 0.9rem;
+    overflow-wrap: anywhere;
+  }
+
+  .footer-section a:hover {
+    color: var(--purple-light);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(124, 58, 237, 0.15);
+    padding-top: 1.5rem;
+    text-align: center;
+  }
+
+  .footer-bottom p {
+    color: var(--gray-light);
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 1024px) {
+    .nav-inner {
+      row-gap: 0.75rem;
+    }
+
+    .nav-links a:not(.nav-cta) {
+      display: none;
+    }
+
+    .hero-content {
+      flex-direction: column;
+      text-align: center;
+      gap: 3rem;
+    }
+
+    .hero-subtitle {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-actions {
+      justify-content: center;
+    }
+
+    .hero-badges {
+      justify-content: center;
+    }
+
+    h1 {
+      font-size: 2.75rem;
+    }
+
+    .feature-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .nav {
+      padding: 0.75rem 0;
+    }
+
+    .nav-inner {
+      padding: 0 1rem;
+      gap: 0.75rem;
+    }
+
+    .nav-brand span,
+    .nav-cta {
+      display: none;
+    }
+
+    .nav-links {
+      gap: 0;
+      margin-left: auto;
+    }
+
+    .hero {
+      padding-top: 4rem;
+    }
+
+    .hero-content {
+      padding: 2rem 1rem 3rem;
+      gap: 2.5rem;
+    }
+
+    h1 {
+      font-size: 2.25rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+    }
+
+    .hero-actions {
+      justify-content: center;
+    }
+
+    .features,
+    .screenshots,
+    .pricing,
+    .download {
+      padding: 4rem 0;
+    }
+
+    .feature-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .feature-card {
+      padding: 1.5rem;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      line-height: 1.18;
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+    }
+
+    .pricing-grid {
+      grid-template-columns: 1fr;
+      max-width: 350px;
+    }
+
+    .pricing-card {
+      padding: 2rem 1.5rem;
+    }
+
+    .price {
+      font-size: 2rem;
+    }
+
+    .screenshot-track {
+      padding: 0 1.5rem;
+      gap: 1rem;
+      justify-content: flex-start;
+    }
+
+    .screenshot-item {
+      width: 210px;
+    }
+
+    .screenshot-item img {
+      border-radius: 1rem;
+    }
+
+    .download-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 1.25rem;
+    }
+
+    .download h2 {
+      font-size: 1.75rem;
+    }
+
+    .download p {
+      font-size: 1rem;
+    }
+
+    .store-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .store-btn {
+      width: 220px;
+      justify-content: center;
+    }
+
+    .footer {
+      padding: 2rem 0 1.5rem;
+    }
+
+    .footer-grid {
+      flex-direction: column;
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .nav-inner {
+      justify-content: center;
+    }
+
+    .nav-brand,
+    .nav-links {
+      display: none;
+    }
+
+    .language-switcher {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .language-option {
+      min-width: 2rem;
+      padding: 0.3rem 0.45rem;
+      font-size: 0.72rem;
+    }
+
+    .hero {
+      min-height: auto;
+      padding-top: 3.75rem;
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      line-height: 1.16;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .hero-actions,
+    .store-buttons {
+      width: 100%;
+    }
+
+    .hero-actions .store-btn,
+    .store-buttons .store-btn {
+      width: 100%;
+      max-width: 260px;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+    }
+
+    .container {
+      padding: 0 1rem;
+    }
+
+    .pricing-grid {
+      max-width: 100%;
+    }
+
+    .screenshot-item {
+      width: 72vw;
+      max-width: 240px;
+      min-width: 190px;
+      scroll-snap-align: start;
+    }
+
+    .screenshot-scroll {
+      padding-bottom: 1.25rem;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(167, 139, 250, 0.7) rgba(124, 58, 237, 0.18);
+    }
+
+    .screenshot-scroll::-webkit-scrollbar {
+      display: block;
+      height: 0.45rem;
+    }
+
+    .screenshot-scroll::-webkit-scrollbar-track {
+      background: rgba(124, 58, 237, 0.18);
+      border-radius: 999px;
+      margin-inline: 1rem;
+    }
+
+    .screenshot-scroll::-webkit-scrollbar-thumb {
+      background: rgba(167, 139, 250, 0.75);
+      border-radius: 999px;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .hero-content {
+      padding-left: 0.85rem;
+      padding-right: 0.85rem;
+    }
+
+    h1 {
+      font-size: 1.65rem;
+    }
+
+    .section-title,
+    .download h2 {
+      font-size: 1.55rem;
+    }
+
+    .feature-card,
+    .pricing-card {
+      padding: 1.25rem;
+    }
+
+    .footer-bottom p {
+      font-size: 0.75rem;
+    }
+  }
+</style>

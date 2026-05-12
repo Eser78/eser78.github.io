@@ -1,0 +1,54 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { localizedLegalContent } from '../lib/legalContent';
+import {
+  getLegalAlternates,
+  getLegalPath,
+  localeConfig,
+  type LegalDocumentType,
+  type Locale,
+} from '../lib/locales';
+
+interface Props {
+  locale: Exclude<Locale, 'en'>;
+  documentType: LegalDocumentType;
+}
+
+const { locale, documentType } = Astro.props;
+const localeData = localeConfig[locale];
+const content = localizedLegalContent[locale][documentType];
+---
+
+<LegalLayout
+  title={`${localeData.legalTitles[documentType]} - Revera`}
+  description={localeData.legalDescriptions[documentType]}
+  heading={localeData.legalTitles[documentType]}
+  lastUpdated={content.lastUpdated}
+  locale={locale}
+  canonicalPath={getLegalPath(locale, documentType)}
+  alternates={getLegalAlternates(documentType)}
+>
+  {
+    content.blocks.map((block) => {
+      if (block.type === 'ul') {
+        return (
+          <ul>
+            {block.items.map((item) => (
+              <li set:html={item} />
+            ))}
+          </ul>
+        );
+      }
+
+      if (block.type === 'h2') {
+        return <h2 set:html={block.html} />;
+      }
+
+      if (block.type === 'h3') {
+        return <h3 set:html={block.html} />;
+      }
+
+      return <p set:html={block.html} />;
+    })
+  }
+</LegalLayout>

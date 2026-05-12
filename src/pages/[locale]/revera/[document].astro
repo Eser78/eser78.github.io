@@ -1,0 +1,36 @@
+---
+import LocalizedLegalDocument from '../../../components/LocalizedLegalDocument.astro';
+import {
+  legalDocumentSlugs,
+  supportedLocales,
+  type LegalDocumentType,
+  type Locale,
+} from '../../../lib/locales';
+
+interface Props {
+  locale: Exclude<Locale, 'en'>;
+  documentType: LegalDocumentType;
+}
+
+export function getStaticPaths() {
+  const legalDocumentTypes = Object.keys(legalDocumentSlugs) as LegalDocumentType[];
+  const localizedLocales = supportedLocales.filter((locale) => locale !== 'en') as Array<Exclude<Locale, 'en'>>;
+
+  return localizedLocales.flatMap((locale) =>
+    legalDocumentTypes.map((documentType) => ({
+      params: {
+        locale,
+        document: legalDocumentSlugs[documentType],
+      },
+      props: {
+        locale,
+        documentType,
+      },
+    })),
+  );
+}
+
+const { locale, documentType } = Astro.props;
+---
+
+<LocalizedLegalDocument locale={locale} documentType={documentType} />

@@ -1,0 +1,266 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getHubAlternates, localeConfig, supportedLocales, type Locale } from '../lib/locales';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'en' } = Astro.props;
+
+const content = {
+  en: {
+    description: 'Apps by ESOciate - Eser Kayali',
+    languageLabel: 'Language selection',
+    subtitle: 'Apps & Projects',
+    appDescription: 'Mix relaxing sounds for sleep, studying & focus',
+  },
+  de: {
+    description: 'Apps von ESOciate - Eser Kayali',
+    languageLabel: 'Sprachauswahl',
+    subtitle: 'Apps & Projekte',
+    appDescription: 'Entspannende Sounds für Schlaf, Lernen und Fokus mischen',
+  },
+  es: {
+    description: 'Apps de ESOciate - Eser Kayali',
+    languageLabel: 'Selección de idioma',
+    subtitle: 'Apps y proyectos',
+    appDescription: 'Mezcla sonidos relajantes para dormir, estudiar y concentrarte',
+  },
+  fr: {
+    description: 'Apps par ESOciate - Eser Kayali',
+    languageLabel: 'Sélection de la langue',
+    subtitle: 'Apps et projets',
+    appDescription: 'Mélangez des sons relaxants pour dormir, étudier et vous concentrer',
+  },
+  it: {
+    description: 'App di ESOciate - Eser Kayali',
+    languageLabel: 'Selezione lingua',
+    subtitle: 'App e progetti',
+    appDescription: 'Mixa suoni rilassanti per dormire, studiare e concentrarti',
+  },
+  pt: {
+    description: 'Apps da ESOciate - Eser Kayali',
+    languageLabel: 'Seleção de idioma',
+    subtitle: 'Apps e projetos',
+    appDescription: 'Misture sons relaxantes para dormir, estudar e manter o foco',
+  },
+};
+
+const t = content[locale];
+---
+
+<BaseLayout
+  title="ESOciate"
+  description={t.description}
+  lang={locale}
+  canonicalPath={localeConfig[locale].hubPath}
+  alternates={getHubAlternates()}
+  detectBrowserLocale={locale === 'en'}
+>
+  <main class="hub">
+    <div class="container">
+      <nav class="language-switcher" aria-label={t.languageLabel}>
+        {
+          supportedLocales.map((code) => (
+            <a
+              href={localeConfig[code].hubPath}
+              class={`language-option${locale === code ? ' active' : ''}`}
+              aria-current={locale === code ? 'page' : undefined}
+              data-preferred-locale={code}
+            >
+              {localeConfig[code].label}
+            </a>
+          ))
+        }
+      </nav>
+      <h1>ESOciate</h1>
+      <p class="subtitle">{t.subtitle}</p>
+      <div class="app-grid">
+        <a href={localeConfig[locale].reveraPath} class="app-card">
+          <img src="/revera/images/AppIcon1024.png" alt="Revera App Icon" class="app-icon" />
+          <div class="app-info">
+            <h2>Revera</h2>
+            <p>{t.appDescription}</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <p>&copy; {new Date().getFullYear()} ESOciate - Eser Kayali</p>
+  </footer>
+</BaseLayout>
+
+<style>
+  .hub {
+    min-height: calc(100vh - 5rem);
+    min-height: calc(100dvh - 5rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .container {
+    max-width: 700px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .language-switcher {
+    display: inline-flex;
+    gap: 0.35rem;
+    margin-bottom: 2rem;
+    padding: 0.25rem;
+    border: 1px solid rgba(124, 58, 237, 0.25);
+    border-radius: 0.75rem;
+    background: rgba(124, 58, 237, 0.08);
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .language-switcher::-webkit-scrollbar {
+    display: none;
+  }
+
+  .language-option {
+    flex: 0 0 auto;
+    min-width: 2.5rem;
+    padding: 0.35rem 0.65rem;
+    border-radius: 0.5rem;
+    color: var(--gray-light);
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  .language-option:hover,
+  .language-option.active {
+    background: var(--purple-bright);
+    color: var(--white);
+  }
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--white), var(--purple-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.25rem;
+  }
+
+  .subtitle {
+    color: var(--gray-light);
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+  }
+
+  .app-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .app-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: rgba(124, 58, 237, 0.1);
+    border: 1px solid rgba(124, 58, 237, 0.25);
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: var(--white);
+  }
+
+  .app-card:hover {
+    background: rgba(124, 58, 237, 0.2);
+    border-color: rgba(124, 58, 237, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .app-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 1rem;
+    flex-shrink: 0;
+  }
+
+  .app-info {
+    text-align: left;
+  }
+
+  .app-info h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .app-info p {
+    color: var(--gray-light);
+    font-size: 0.95rem;
+  }
+
+  footer {
+    width: 100%;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    color: var(--gray-light);
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 520px) {
+    .hub {
+      padding: 1.25rem;
+    }
+
+    .language-option {
+      min-width: 2rem;
+      padding: 0.3rem 0.45rem;
+    }
+
+    .app-card {
+      gap: 1rem;
+      padding: 1.25rem;
+    }
+
+    .app-icon {
+      width: 64px;
+      height: 64px;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .hub {
+      min-height: auto;
+      padding: 2rem 1rem 1rem;
+    }
+
+    .language-switcher {
+      width: 100%;
+      justify-content: center;
+      gap: 0.2rem;
+    }
+
+    h1 {
+      font-size: 2.25rem;
+      line-height: 1.15;
+    }
+
+    .subtitle {
+      margin-bottom: 2rem;
+    }
+
+    .app-card {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .app-info {
+      text-align: center;
+    }
+  }
+</style>
